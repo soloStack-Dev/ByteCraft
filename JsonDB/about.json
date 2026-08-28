@@ -1,0 +1,38 @@
+{
+  "mission": {
+    "text": "We build the infrastructure that powers the next generation of SaaS. High-fidelity, developer-centric, and fiercely independent."
+  },
+  "founderStory": {
+    "title": "I build this saas product for starting own freelancing journey because AI can do all repetitive task so don't abandoned our interested career so I planning to move my career this but I am currently work in non developer field",
+    "paragraphs": [
+      "The genesis of this tool was born from necessity, bridging the gap between ambition and current reality.",
+      "By automating the mundane, we free up cognitive load for complex, creative problem-solving.",
+      "This platform serves as the foundational scaffolding for transitioning into technical domains.",
+      "It's designed for resilience, allowing you to architect solutions regardless of your background.",
+      "We are democratizing the tooling previously reserved for elite engineering teams."
+    ],
+    "ctaText": "Preview Platform",
+    "ctaHref": "/services",
+    "image": "/assets/About-asserts/about-section-image.png"
+  },
+  "dispatches": {
+    "title": "Latest Dispatches",
+    "items": [
+      {
+        "image": "/assets/About-asserts/about-blog-one.png",
+        "tag": "ARCHITECTURE",
+        "title": "Scaling the Monolith"
+      },
+      {
+        "image": "/assets/About-asserts/about-blog-two.png",
+        "tag": "PERFORMANCE",
+        "title": "Zero-Latency State"
+      },
+      {
+        "image": "/assets/About-asserts/about-blog-three.png",
+        "tag": "WORKFLOW",
+        "title": "The Ideal IDE Setup"
+      }
+    ]
+  }
+}

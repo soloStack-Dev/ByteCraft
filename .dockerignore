@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+drizzle
+Dockerfile
+docker-compose*.yml
+.dockerignore
+npm-debug.log*
+README.md
+*.md
+coverage

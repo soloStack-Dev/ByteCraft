@@ -1,0 +1,48 @@
+{
+  "hero": {
+    "badge": "Version 2.0 is live",
+    "titleLineOne": "Engineer Your",
+    "titleLineTwo": "Freelance Workflow",
+    "description": "ByteCraft provides AI-driven SaaS tools designed exclusively for technical freelancers. Automate the mundane, secure your deployments, and scale your operations with precision.",
+    "primaryCta": "Our Services",
+    "primaryCtaHref": "/services",
+    "secondaryCta": "View Documentation",
+    "secondaryCtaHref": "/blog"
+  },
+  "features": {
+    "eyebrow": "Core Infrastructure",
+    "title": "Core Infrastructure",
+    "description": "Built for speed, reliability, and precision execution.",
+    "items": [
+      {
+        "icon": "Clock",
+        "color": "#F4A6C1",
+        "title": "Time Management",
+        "description": "Good time management to deliver the product perfectly on schedule. Track cycles, optimize sprints, and forecast delivery timelines effortlessly.",
+        "linkText": "Explore Module",
+        "linkHref": "/services"
+      },
+      {
+        "icon": "Cpu",
+        "color": "#C8A8E9",
+        "title": "AI Automation",
+        "description": "Leverage machine learning models to automate repetitive coding tasks, generate boilerplate, and analyze code quality in real-time.",
+        "linkText": "Explore Module",
+        "linkHref": "/services"
+      },
+      {
+        "icon": "Shield",
+        "color": "#F4A6C1",
+        "title": "Secure Deployment",
+        "description": "End-to-end encrypted pipelines ensuring your freelance projects are deployed securely with zero-trust architecture built-in.",
+        "linkText": "Explore Module",
+        "linkHref": "/services"
+      }
+    ]
+  },
+  "blog": {
+    "title": "Latest Transmissions",
+    "description": "Insights and engineering logs from the ByteCraft team.",
+    "featuredTag": "Engineering"
+  }
+}

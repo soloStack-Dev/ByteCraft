@@ -1,0 +1,12 @@
+{
+  "tagline": "Building the underlying architecture for the modern freelance technical workflow.",
+  "legalTitle": "Legal & Info",
+  "legalLinks": [
+    { "label": "Privacy Policy", "href": "/privacy" },
+    { "label": "Terms of Service", "href": "/terms" },
+    { "label": "Contact Us", "href": "/contact" },
+    { "label": "Careers", "href": "/careers" }
+  ],
+  "copyright": "Engineered for precision.",
+  "contactEmail": "hello@bytecraft.dev"
+}

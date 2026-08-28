@@ -1,0 +1,104 @@
+{
+  "hero": {
+    "title": "Welcome to",
+    "description": "We build precision software solutions for the modern web. From simple landing pages to complex AI-driven SaaS applications, our focus is on performance, security, and scalability.",
+    "terminalLines": [
+      "Set up load balancing...",
+      "Deploy personal portfolios...",
+      "Integrate Auth0 security...",
+      "Build RAG software pipelines..."
+    ]
+  },
+  "pricing": {
+    "title": "Service Tiers",
+    "ctaText": "SELECT PLAN",
+    "rowOne": [
+      {
+        "tier": "STARTER",
+        "name": "Portfolio Build",
+        "price": "₹1,000",
+        "features": [
+          "Building personal portfolio",
+          "Deploy & domain setup",
+          "Simple blog websites",
+          "Email support setup",
+          "External basic auth"
+        ],
+        "gradient": false
+      },
+      {
+        "tier": "GROWTH",
+        "name": "Security & Scale",
+        "price": "₹950",
+        "features": [
+          "Advanced security protocols",
+          "Payment gateway integration",
+          "Technical SEO improvement",
+          "Custom authentication",
+          "Basic load balancing"
+        ],
+        "gradient": false
+      },
+      {
+        "tier": "PROFESSIONAL",
+        "name": "SaaS Foundation",
+        "price": "₹2,500",
+        "features": [
+          "Full SaaS application build",
+          "AI smart feature integration",
+          "Secured database setup",
+          "Auth0 security authentication",
+          "Payment & external services"
+        ],
+        "gradient": true
+      }
+    ],
+    "rowTwo": [
+      {
+        "tier": "ADVANCED",
+        "name": "Agentic AI",
+        "price": "₹5,000",
+        "features": [
+          "Agentic AI software build",
+          "RAG software pipelines",
+          "Vector database integration",
+          "MCP integration & deploy",
+          "Rate limiting & balancing"
+        ],
+        "gradient": false
+      },
+      {
+        "tier": "ENTERPRISE",
+        "name": "Data Management",
+        "price": "₹8,000",
+        "features": [
+          "Data entry software",
+          "Custom admin dashboards",
+          "AI smart features",
+          "Complex MCP integration",
+          "Full deployment pipeline"
+        ],
+        "gradient": false
+      },
+      {
+        "tier": "ULTIMATE",
+        "name": "Mobile Ecosystem",
+        "price": "₹10,000",
+        "features": [
+          "Native mobile app build",
+          "Playstore deployment",
+          "Embedded AI features",
+          "Distributed databases",
+          "Global load balancing"
+        ],
+        "gradient": false
+      }
+    ]
+  },
+  "blog": {
+    "eyebrow": "Latest Insights",
+    "title": "Engineering Blog",
+    "viewAllText": "View All Articles",
+    "viewAllHref": "/blog"
+  }
+}
