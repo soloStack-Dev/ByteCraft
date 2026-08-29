@@ -1,12 +1,48 @@
+/**
+ * Footer.tsx
+ * ------------------------------------------------------------------
+ * Site-wide footer shown on every page.
+ *
+ * Three columns: logo/tagline, legal links, and copyright + social
+ * buttons. Stacks into a single column on mobile.
+ * ------------------------------------------------------------------
+ */
 import Link from "next/link";
 import { Code2, Mail } from "lucide-react";
 
+/** Legal / info links rendered in the centre column. */
 const LEGAL_LINKS = [
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Service", href: "/terms" },
   { label: "Contact Us", href: "/contact" },
   { label: "Careers", href: "/careers" },
 ];
+
+/**
+ * Reusable square icon button (GitHub / email).
+ * `label` is used for accessibility and `children` for the icon.
+ */
+function SocialButton({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="flex h-9 w-9 items-center justify-center rounded-md border border-border-strong bg-surface text-muted-foreground transition-colors hover:text-foreground"
+    >
+      {children}
+    </a>
+  );
+}
 
 export function Footer() {
   return (
@@ -23,7 +59,7 @@ export function Footer() {
           </p>
         </div>
 
-        {/* Center: Legal */}
+        {/* Centre: Legal */}
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
             Legal &amp; Info
@@ -48,22 +84,12 @@ export function Footer() {
             © 2024 ByteCraft. Engineered for precision.
           </p>
           <div className="flex gap-3">
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-md border border-border-strong bg-surface text-muted-foreground transition-colors hover:text-foreground"
-              aria-label="Source code"
-            >
+            <SocialButton href="https://github.com" label="Source code">
               <Code2 size={16} />
-            </a>
-            <a
-              href="mailto:hello@bytecraft.dev"
-              className="flex h-9 w-9 items-center justify-center rounded-md border border-border-strong bg-surface text-muted-foreground transition-colors hover:text-foreground"
-              aria-label="Email"
-            >
+            </SocialButton>
+            <SocialButton href="mailto:hello@bytecraft.dev" label="Email">
               <Mail size={16} />
-            </a>
+            </SocialButton>
           </div>
         </div>
       </div>

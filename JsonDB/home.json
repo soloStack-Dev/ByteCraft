@@ -1,9 +1,9 @@
 {
   "hero": {
     "badge": "Version 2.0 is live",
-    "titleLineOne": "Engineer Your",
-    "titleLineTwo": "Freelance Workflow",
-    "description": "ByteCraft provides AI-driven SaaS tools designed exclusively for technical freelancers. Automate the mundane, secure your deployments, and scale your operations with precision.",
+    "titleLineOne": "One Workspace",
+    "titleLineTwo": "Endless Possibilities",
+    "description": "**ByteCraft provides AI-driven SaaS tools that empower developers and technical teams to build, automate, and scale AI-powered web applications. Automate the mundane, secure your deployments, and scale your operations with precision.**",
     "primaryCta": "Our Services",
     "primaryCtaHref": "/services",
     "secondaryCta": "View Documentation",

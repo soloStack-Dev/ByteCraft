@@ -1,11 +1,35 @@
+/**
+ * Services page
+ * ------------------------------------------------------------------
+ * Highlights ByteCraft's service tiers / pricing, plus a terminal-style
+ * hero and a small engineering-blog preview.
+ *
+ * Sections:
+ *   1. Hero with a fake terminal.
+ *   2. Service Tiers (two rows of pricing cards).
+ *   3. Engineering Blog preview (latest posts).
+ * ------------------------------------------------------------------
+ */
 "use client";
 
 import Image from "next/image";
 import { Check } from "lucide-react";
 import { useScrollReveal, useEntrance } from "@/lib/animations";
 import { useBlogPosts } from "@/lib/hooks/use-blog";
+import { cardShadow } from "@/lib/styles";
 
-const TIER_ROW_ONE = [
+/** A single pricing tier / plan. */
+interface Plan {
+  tier: string;
+  name: string;
+  price: string;
+  features: string[];
+  cta: string;
+  gradient?: boolean;
+}
+
+/** First row of pricing cards. */
+const TIER_ROW_ONE: Plan[] = [
   {
     tier: "STARTER",
     name: "Portfolio Build",
@@ -18,7 +42,6 @@ const TIER_ROW_ONE = [
       "External basic auth",
     ],
     cta: "SELECT PLAN",
-    gradient: false,
   },
   {
     tier: "GROWTH",
@@ -32,7 +55,6 @@ const TIER_ROW_ONE = [
       "Basic load balancing",
     ],
     cta: "SELECT PLAN",
-    gradient: false,
   },
   {
     tier: "PROFESSIONAL",
@@ -50,7 +72,8 @@ const TIER_ROW_ONE = [
   },
 ];
 
-const TIER_ROW_TWO = [
+/** Second row of pricing cards. */
+const TIER_ROW_TWO: Plan[] = [
   {
     tier: "ADVANCED",
     name: "Agentic AI",
@@ -63,7 +86,6 @@ const TIER_ROW_TWO = [
       "Rate limiting & balancing",
     ],
     cta: "SELECT PLAN",
-    gradient: false,
   },
   {
     tier: "ENTERPRISE",
@@ -77,7 +99,6 @@ const TIER_ROW_TWO = [
       "Full deployment pipeline",
     ],
     cta: "SELECT PLAN",
-    gradient: false,
   },
   {
     tier: "ULTIMATE",
@@ -91,7 +112,6 @@ const TIER_ROW_TWO = [
       "Global load balancing",
     ],
     cta: "SELECT PLAN",
-    gradient: false,
   },
   {
     tier: "ESSENTIAL",
@@ -104,10 +124,10 @@ const TIER_ROW_TWO = [
       "Deploy in Hostinger",
     ],
     cta: "SELECT PLAN",
-    gradient: false,
   },
 ];
 
+/** Lines shown in the decorative terminal. */
 const TERMINAL_LINES = [
   "Set up load balancing...",
   "Deploy personal portfolios...",
@@ -115,11 +135,16 @@ const TERMINAL_LINES = [
   "Build RAG software pipelines...",
 ];
 
-function PricingCard({ plan }: { plan: (typeof TIER_ROW_ONE)[0] }) {
+/**
+ * PricingCard – single pricing card.
+ * Every card uses the same pink/lavender gradient CTA button so ALL the
+ * plan buttons share the same colour treatment (matching SaaS Foundation).
+ */
+function PricingCard({ plan }: { plan: Plan }) {
   return (
     <div
       className="flex min-h-[420px] flex-col justify-between rounded-xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-border-strong"
-      style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.2)" }}
+      style={{ boxShadow: cardShadow }}
     >
       <div>
         <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-faint">
@@ -128,7 +153,10 @@ function PricingCard({ plan }: { plan: (typeof TIER_ROW_ONE)[0] }) {
         <p className="mt-2 text-[22px] font-bold text-foreground">{plan.name}</p>
         <ul className="mt-6 flex flex-col gap-3">
           {plan.features.map((f) => (
-            <li key={f} className="flex items-start gap-2 text-sm text-muted-foreground">
+            <li
+              key={f}
+              className="flex items-start gap-2 text-sm text-muted-foreground"
+            >
               <Check size={14} className="mt-0.5 shrink-0 text-[#f4a6c1]" />
               {f}
             </li>
@@ -143,6 +171,19 @@ function PricingCard({ plan }: { plan: (typeof TIER_ROW_ONE)[0] }) {
           {plan.cta}
         </button>
       </div>
+    </div>
+  );
+}
+
+/** Renders a wrapper container with equal-height, responsive grid. */
+function TiersGrid({ plans }: { plans: Plan[] }) {
+  return (
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {plans.map((plan, i) => (
+        <div key={plan.name} data-reveal data-reveal-delay={String(0.1 * i)}>
+          <PricingCard plan={plan} />
+        </div>
+      ))}
     </div>
   );
 }
@@ -164,6 +205,7 @@ export default function ServicesPage() {
           data-entrance
           className="grid gap-12 rounded-xl border border-border bg-elevated p-12 lg:grid-cols-2 lg:p-16"
         >
+          {/* Left: headline + intro */}
           <div className="max-w-[400px]">
             <h1 className="text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-foreground sm:text-[48px]">
               Welcome to
@@ -175,8 +217,9 @@ export default function ServicesPage() {
             </p>
           </div>
 
+          {/* Right: decorative terminal */}
           <div className="rounded-lg border border-border bg-background p-6">
-            {TERMINAL_LINES.map((line, i) => (
+            {TERMINAL_LINES.map((line) => (
               <p
                 key={line}
                 className="font-mono text-[13px] leading-[1.5] text-muted-foreground"
@@ -193,7 +236,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Pricing Row 1 */}
+      {/* SERVICE TIERS */}
       <section className="mx-auto w-full max-w-[1280px] px-6 py-20">
         <h2
           data-reveal
@@ -201,28 +244,15 @@ export default function ServicesPage() {
         >
           Service Tiers
         </h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {TIER_ROW_ONE.map((plan, i) => (
-            <div key={plan.name} data-reveal data-reveal-delay={String(0.1 * i)}>
-              <PricingCard plan={plan} />
-            </div>
-          ))}
-        </div>
-        <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {TIER_ROW_TWO.map((plan, i) => (
-            <div key={plan.name} data-reveal data-reveal-delay={String(0.1 * i)}>
-              <PricingCard plan={plan} />
-            </div>
-          ))}
+        <TiersGrid plans={TIER_ROW_ONE} />
+        <div className="mt-6">
+          <TiersGrid plans={TIER_ROW_TWO} />
         </div>
       </section>
 
-      {/* Engineering Blog */}
+      {/* ENGINEERING BLOG */}
       <section className="mx-auto w-full max-w-[1280px] px-6 py-20">
-        <div
-          data-reveal
-          className="mb-12 flex items-end justify-between"
-        >
+        <div data-reveal className="mb-12 flex items-end justify-between">
           <div>
             <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-[#f4a6c1]">
               Latest Insights

@@ -1,3 +1,12 @@
+/**
+ * Home page
+ * ------------------------------------------------------------------
+ * Landing page with:
+ *   1. Hero (background image + dark gradient overlay + headline).
+ *   2. Core Infrastructure (three feature cards).
+ *   3. Latest Transmissions (featured blog posts).
+ * ------------------------------------------------------------------
+ */
 "use client";
 
 import Link from "next/link";
@@ -5,7 +14,9 @@ import Image from "next/image";
 import { ArrowRight, Clock, Cpu, Shield, Code2 } from "lucide-react";
 import { useScrollReveal, useEntrance } from "@/lib/animations";
 import { useBlogPosts } from "@/lib/hooks/use-blog";
+import { cardShadow } from "@/lib/styles";
 
+/** Core feature cards shown in the "Core Infrastructure" section. */
 const FEATURES = [
   {
     icon: Clock,
@@ -30,11 +41,28 @@ const FEATURES = [
   },
 ];
 
+/** Shared section heading (title + optional subtitle). */
+function SectionHeader({ title, subtitle }: { title: string; subtitle?: string }) {
+  return (
+    <div className="mb-12">
+      <h2 data-reveal className="text-[32px] font-bold tracking-[-0.01em] text-foreground">
+        {title}
+      </h2>
+      {subtitle && (
+        <p data-reveal data-reveal-delay="0.1" className="mt-2 text-base text-muted-foreground">
+          {subtitle}
+        </p>
+      )}
+    </div>
+  );
+}
+
 export default function HomePage() {
   const revealRef = useScrollReveal();
   const entranceRef = useEntrance();
   const { data: posts = [] } = useBlogPosts("all");
 
+  // Hand-pick posts for the blog preview layout.
   const largePost = posts[0];
   const topPost = posts.find((p) => p.id === 7);
   const bottomPosts = posts.filter((p) => p.id === 8 || p.id === 9);
@@ -46,6 +74,7 @@ export default function HomePage() {
         ref={entranceRef}
         className="relative flex min-h-[480px] w-full min-w-full flex-col items-center justify-center overflow-hidden px-6"
       >
+        {/* Background image */}
         <div className="absolute inset-0">
           <Image
             src="/assets/About-asserts/main-section-backgroud-image.png"
@@ -56,6 +85,7 @@ export default function HomePage() {
             className="object-cover"
           />
         </div>
+        {/* Dark overlay so white text stays readable */}
         <div
           className="absolute inset-0"
           style={{
@@ -63,6 +93,7 @@ export default function HomePage() {
               "linear-gradient(to bottom, rgba(15,15,17,0.92) 0%, rgba(15,15,17,0.55) 45%, rgba(15,15,17,0.92) 100%)",
           }}
         />
+        {/* Subtle pink radial glow */}
         <div
           className="pointer-events-none absolute inset-0"
           style={{
@@ -70,6 +101,8 @@ export default function HomePage() {
               "radial-gradient(ellipse at center, rgba(244,166,193,0.08) 0%, transparent 70%)",
           }}
         />
+
+        {/* Content sits above the overlays */}
         <div className="relative z-10 flex max-w-[700px] flex-col items-center gap-6 text-center">
           <span
             data-entrance
@@ -96,7 +129,10 @@ export default function HomePage() {
               className="group flex items-center justify-center gap-2 rounded-md cta-gradient px-6 py-3 text-[12px] font-bold uppercase tracking-wider text-[#0f0f11] transition-all hover:brightness-110"
             >
               Our Services
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight
+                size={16}
+                className="transition-transform group-hover:translate-x-0.5"
+              />
             </Link>
             <Link
               href="/blog"
@@ -109,24 +145,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FEATURES */}
+      {/* CORE INFRASTRUCTURE */}
       <section className="mx-auto w-full max-w-[1280px] px-6 py-20">
-        <div className="mb-12">
-          <h2 data-reveal className="text-[32px] font-bold tracking-[-0.01em] text-foreground">
-            Core Infrastructure
-          </h2>
-          <p data-reveal data-reveal-delay="0.1" className="mt-2 text-base text-muted-foreground">
-            Built for speed, reliability, and precision execution.
-          </p>
-        </div>
-
+        <SectionHeader
+          title="Core Infrastructure"
+          subtitle="Built for speed, reliability, and precision execution."
+        />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {FEATURES.map((feature) => (
             <div
               key={feature.title}
               data-reveal
               className="group rounded-xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-border-strong"
-              style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.2)" }}
+              style={{ boxShadow: cardShadow }}
             >
               <div
                 className="flex h-10 w-10 items-center justify-center rounded-lg"
@@ -152,19 +183,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* BLOG */}
+      {/* LATEST TRANSMISSIONS */}
       <section className="mx-auto w-full max-w-[1280px] px-6 py-20">
-        <div className="mb-12">
-          <h2 data-reveal className="text-[32px] font-bold tracking-[-0.01em] text-foreground">
-            Latest Transmissions
-          </h2>
-          <p data-reveal data-reveal-delay="0.1" className="mt-2 text-base text-muted-foreground">
-            Insights and engineering logs from the ByteCraft team.
-          </p>
-        </div>
+        <SectionHeader
+          title="Latest Transmissions"
+          subtitle="Insights and engineering logs from the ByteCraft team."
+        />
 
         <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
-          {/* Large left card */}
+          {/* Large left card (spans two rows) */}
           {largePost && (
             <div
               data-reveal
@@ -178,6 +205,7 @@ export default function HomePage() {
                   sizes="(max-width: 1024px) 100vw, 60vw"
                   className="object-cover transition-transform duration-300 hover:scale-105"
                 />
+                {/* Bottom gradient so the white overlay text is legible */}
                 <div
                   className="absolute inset-0"
                   style={{
@@ -200,7 +228,7 @@ export default function HomePage() {
             </div>
           )}
 
-          {/* Right column stacked */}
+          {/* Right column: one "update" card */}
           {topPost && (
             <div
               data-reveal
@@ -220,6 +248,7 @@ export default function HomePage() {
             </div>
           )}
 
+          {/* Right column bottom: two small cards */}
           <div className="grid gap-6 sm:grid-cols-2">
             {bottomPosts.map((post) => (
               <div

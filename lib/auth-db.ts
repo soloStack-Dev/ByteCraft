@@ -1,3 +1,17 @@
+/**
+ * auth-db.ts
+ * ------------------------------------------------------------------
+ * User persistence + password handling on top of the database.
+ *
+ * Responsibility breakdown:
+ *  - Zod schemas validate incoming signup/login data.
+ *  - Passwords are hashed (scrypt + salt) and verified using a
+ *    constant-time comparison.
+ *  - registerUser / authenticateUser are the two higher-level
+ *    operations the rest of the app calls.
+ * ------------------------------------------------------------------
+ */
+
 import { randomBytes, scrypt, timingSafeEqual } from "node:crypto";
 import { promisify } from "node:util";
 import { eq } from "drizzle-orm";
@@ -5,8 +19,14 @@ import { getDb } from "@/db";
 import { users, type NewUser } from "@/db/schema";
 import { z } from "zod";
 
+// scrypt uses a callback API; promisify lets us use async/await.
 const scryptAsync = promisify(scrypt);
 
+/* ------------------------------------------------------------------ */
+/* Validation                                                          */
+/* ------------------------------------------------------------------ */
+
+/** Rules for creating a new account (used by the signup form). */
 export const signUpSchema = z
   .object({
     username: z
@@ -21,22 +41,36 @@ export const signUpSchema = z
       .max(128),
     confirmPassword: z.string(),
   })
+  // Cross-field rule: password and confirmation must match.
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
     path: ["confirmPassword"],
   });
 
+/** Rules for logging in. */
 export const loginSchema = z.object({
   username: z.string().min(1, "Username is required"),
   password: z.string().min(1, "Password is required"),
 });
 
+/* ------------------------------------------------------------------ */
+/* Password hashing                                                    */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Hash a plain-text password using scrypt with a random per-user salt.
+ * Stored format: `salt:hash` (both hex) so we can verify later.
+ */
 async function hashPassword(password: string): Promise<string> {
   const salt = randomBytes(16).toString("hex");
   const buf = (await scryptAsync(password, salt, 64)) as Buffer;
   return `${salt}:${buf.toString("hex")}`;
 }
 
+/**
+ * Verify a plain-text password against a stored `salt:hash` value.
+ * timingSafeEqual avoids leaking timing information about the hash.
+ */
 async function verifyPassword(
   password: string,
   stored: string
@@ -48,6 +82,11 @@ async function verifyPassword(
   return timingSafeEqual(hashBuf, inputBuf);
 }
 
+/* ------------------------------------------------------------------ */
+/* Single-row lookups                                                  */
+/* ------------------------------------------------------------------ */
+
+/** Find a user by their unique username. */
 export async function getUserByUsername(username: string) {
   const db = await getDb();
   const [user] = await db
@@ -57,32 +96,47 @@ export async function getUserByUsername(username: string) {
   return user;
 }
 
+/** Find a user by their unique email address. */
 export async function getUserByEmail(email: string) {
   const db = await getDb();
   const [user] = await db.select().from(users).where(eq(users.email, email));
   return user;
 }
 
+/** Insert a brand-new user row. */
 export async function createUser(data: NewUser) {
   const db = await getDb();
   const [result] = await db.insert(users).values(data);
   return result;
 }
 
+/* ------------------------------------------------------------------ */
+/* High-level auth operations                                          */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Create a new account.
+ *
+ * Guards against duplicate usernames/emails first, then hashes the
+ * password, writes the row, and returns the persisted user.
+ * Returns a discriminated `{ error }` result on failure so callers
+ * can show friendly messages.
+ */
 export async function registerUser(input: {
   username: string;
   email: string;
   password: string;
 }) {
-  const existingUsername = await getUserByUsername(input.username);
-  if (existingUsername) {
+  // Reject if the username is already taken.
+  if (await getUserByUsername(input.username)) {
     return { error: "USERNAME_TAKEN" as const };
   }
-  const existingEmail = await getUserByEmail(input.email);
-  if (existingEmail) {
+  // Reject if the email is already registered.
+  if (await getUserByEmail(input.email)) {
     return { error: "EMAIL_TAKEN" as const };
   }
 
+  // Hash + persist the new user.
   const passwordHash = await hashPassword(input.password);
   await createUser({
     username: input.username,
@@ -91,12 +145,17 @@ export async function registerUser(input: {
     name: input.username,
   });
 
+  // Re-read the row so the caller gets the full persisted user object.
   const user = await getUserByUsername(input.username);
   if (!user) return { error: "CREATION_FAILED" as const };
 
   return { user };
 }
 
+/**
+ * Validate a username/password pair and return the matching user
+ * (or `null` if the credentials are wrong).
+ */
 export async function authenticateUser(input: {
   username: string;
   password: string;

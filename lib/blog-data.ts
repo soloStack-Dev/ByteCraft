@@ -1,3 +1,16 @@
+/**
+ * blog-data.ts
+ * ------------------------------------------------------------------
+ * Static blog content for the entire app (no backend yet).
+ *
+ * Exposes:
+ *  - BlogPost type + a blogPosts array.
+ *  - blogTopics list for filter tabs.
+ *  - getFeaturedPost() / getPostsByTopic() helpers.
+ *
+ * Images live in /assets/Blog-asserts/ under the public folder.
+ * ------------------------------------------------------------------
+ */
 export type BlogTopic =
   | "engineering"
   | "security"

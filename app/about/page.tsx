@@ -1,14 +1,76 @@
+/**
+ * About page
+ * ------------------------------------------------------------------
+ * Brand story page with:
+ *   1. MISSION – background image + dark gradient overlay + manifesto.
+ *   2. FOUNDER STORY – personal write-up + portrait image + external
+ *      "Preview Platform" link.
+ *   3. LATEST DISPATCHES – a small grid of article cards.
+ * ------------------------------------------------------------------
+ */
 "use client";
 
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal, useEntrance } from "@/lib/animations";
-import { useFeaturedPost } from "@/lib/hooks/use-blog";
+
+/** Static dispatch cards rendered in the "Latest Dispatches" grid. */
+const DISPATCHES = [
+  {
+    image: "/assets/About-asserts/about-blog-one.png",
+    tag: "ARCHITECTURE",
+    title: "Scaling the Monolith",
+  },
+  {
+    image: "/assets/About-asserts/about-blog-two.png",
+    tag: "PERFORMANCE",
+    title: "Zero-Latency State",
+  },
+  {
+    image: "/assets/About-asserts/about-blog-three.png",
+    tag: "WORKFLOW",
+    title: "The Ideal IDE Setup",
+  },
+];
+
+/** A single dispatch card in the grid. */
+function DispatchCard({
+  post,
+  index,
+}: {
+  post: (typeof DISPATCHES)[number];
+  index: number;
+}) {
+  return (
+    <div
+      data-reveal
+      data-reveal-delay={String(0.1 * index)}
+      className="group overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-border-strong"
+    >
+      <div className="relative aspect-[16/9] w-full">
+        <Image
+          src={post.image}
+          alt={post.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
+      <div className="p-5">
+        <span className="inline-block rounded border border-border-strong px-3 py-1 text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
+          {post.tag}
+        </span>
+        <h3 className="mt-3 text-base font-semibold text-foreground">
+          {post.title}
+        </h3>
+      </div>
+    </div>
+  );
+}
 
 export default function AboutPage() {
   const revealRef = useScrollReveal();
   const entranceRef = useEntrance();
-  const { data: featured } = useFeaturedPost();
 
   return (
     <div ref={revealRef}>
@@ -17,6 +79,7 @@ export default function AboutPage() {
         ref={entranceRef}
         className="relative flex min-h-[480px] w-full min-w-full flex-col items-center justify-center overflow-hidden px-6 py-32"
       >
+        {/* Background image */}
         <div className="absolute inset-0">
           <Image
             src="/assets/About-asserts/main-section-backgroud-image.png"
@@ -27,6 +90,7 @@ export default function AboutPage() {
             className="object-cover"
           />
         </div>
+        {/* Dark overlay so the white text stays readable */}
         <div
           className="absolute inset-0"
           style={{
@@ -34,6 +98,7 @@ export default function AboutPage() {
               "linear-gradient(to bottom, rgba(15,15,17,0.92) 0%, rgba(15,15,17,0.55) 45%, rgba(15,15,17,0.92) 100%)",
           }}
         />
+        {/* Manifesto text sits above the overlays */}
         <div className="relative z-10">
           <p
             data-entrance
@@ -48,6 +113,7 @@ export default function AboutPage() {
       {/* FOUNDER STORY */}
       <section className="mx-auto w-full max-w-[1280px] px-6 py-20">
         <div className="grid items-start gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          {/* Left: story text */}
           <div>
             <h1
               data-reveal
@@ -82,6 +148,7 @@ export default function AboutPage() {
               </p>
             </div>
 
+            {/* External preview link */}
             <a
               data-reveal
               data-reveal-delay="0.35"
@@ -95,10 +162,8 @@ export default function AboutPage() {
             </a>
           </div>
 
-          <div
-            data-reveal
-            className="group overflow-hidden rounded-xl border border-border"
-          >
+          {/* Right: portrait image */}
+          <div data-reveal className="group overflow-hidden rounded-xl border border-border">
             <div className="relative aspect-[4/5] w-full">
               <Image
                 src="/assets/About-asserts/about-section-image.png"
@@ -118,47 +183,8 @@ export default function AboutPage() {
           Latest Dispatches
         </h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {[
-            {
-              image: "/assets/About-asserts/about-blog-one.png",
-              tag: "ARCHITECTURE",
-              title: "Scaling the Monolith",
-            },
-            {
-              image: "/assets/About-asserts/about-blog-two.png",
-              tag: "PERFORMANCE",
-              title: "Zero-Latency State",
-            },
-            {
-              image: "/assets/About-asserts/about-blog-three.png",
-              tag: "WORKFLOW",
-              title: "The Ideal IDE Setup",
-            },
-          ].map((post, i) => (
-            <div
-              key={post.title}
-              data-reveal
-              data-reveal-delay={String(0.1 * i)}
-              className="group overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-border-strong"
-            >
-              <div className="relative aspect-[16/9] w-full">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-5">
-                <span className="inline-block rounded border border-border-strong px-3 py-1 text-[10px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
-                  {post.tag}
-                </span>
-                <h3 className="mt-3 text-base font-semibold text-foreground">
-                  {post.title}
-                </h3>
-              </div>
-            </div>
+          {DISPATCHES.map((post, i) => (
+            <DispatchCard key={post.title} post={post} index={i} />
           ))}
         </div>
       </section>
