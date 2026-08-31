@@ -7,13 +7,13 @@
 # runtime only and never baked into the image.
 # ================================================================
 
-FROM oven/bun:1.3.14 AS base
+FROM node:22-bookworm-slim AS base
 WORKDIR /app
 
 # ---------- deps ----------
 FROM base AS deps
-COPY package.json bun.lock ./
-RUN bun install --frozen-lockfile --ignore-scripts
+COPY package.json package-lock.json ./
+RUN npm ci --ignore-scripts
 
 # ---------- builder ----------
 FROM node:22-bookworm-slim AS builder
@@ -28,7 +28,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN node_modules/.bin/next build
+RUN npm run build
 
 # ---------- runner ----------
 FROM node:22-alpine AS runner
