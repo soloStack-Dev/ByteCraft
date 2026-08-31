@@ -7,17 +7,16 @@
 # runtime only and never baked into the image.
 # ================================================================
 
-FROM node:22-bookworm-slim AS base
+FROM oven/bun:1.4.0 AS base
 WORKDIR /app
 
 # ---------- deps ----------
 FROM base AS deps
-COPY package.json package-lock.json ./
-RUN npm ci --ignore-scripts
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile --ignore-scripts
 
 # ---------- builder ----------
-FROM node:22-bookworm-slim AS builder
-WORKDIR /app
+FROM base AS builder
 
 ARG NEXT_PUBLIC_CONVEX_URL
 ARG NEXT_PUBLIC_CONVEX_SITE_URL
@@ -28,7 +27,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
+RUN bun run build
 
 # ---------- runner ----------
 FROM node:22-alpine AS runner
