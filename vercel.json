@@ -1,5 +1,5 @@
 {
-  "installCommand": "bun install --legacy-peer-deps",
+  "installCommand": "bun install --frozen-lockfile",
   "buildCommand": "bun run build",
   "framework": "nextjs"
 }

@@ -54,9 +54,23 @@
     "eslint-config-next": "16.3.3",
     "tailwindcss": "^4",
     "tsx": "^4.23.12",
-    "typescript": "^5"
+    "typescript": "^5",
+    "typescript-eslint": "8.46.2"
   },
   "packageManager": "bun@1.4.0",
+  "overrides": {
+    "@typescript-eslint/eslint-plugin": "8.46.2",
+    "@typescript-eslint/parser": "8.46.2",
+    "@typescript-eslint/project-service": "8.46.2",
+    "@typescript-eslint/scope-manager": "8.46.2",
+    "@typescript-eslint/tsconfig-utils": "8.46.2",
+    "@typescript-eslint/type-utils": "8.46.2",
+    "@typescript-eslint/types": "8.46.2",
+    "@typescript-eslint/typescript-estree": "8.46.2",
+    "@typescript-eslint/utils": "8.46.2",
+    "@typescript-eslint/visitor-keys": "8.46.2",
+    "typescript-eslint": "8.46.2"
+  },
   "ignoreScripts": [
     "sharp",
     "unrs-resolver"
