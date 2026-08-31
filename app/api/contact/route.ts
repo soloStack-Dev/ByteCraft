@@ -8,10 +8,10 @@
  */
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 const OWNER_EMAIL = "faleelmr4@gmail.com";
 
 export async function POST(request: Request) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   let body: { username?: string; email?: string; phone?: string; message?: string };
   try {
     body = await request.json();

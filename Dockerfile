@@ -1,19 +1,34 @@
 # syntax=docker/dockerfile:1
 
+# ================================================================
+# ByteCraft — multi-stage Dockerfile
+# Build arg NEXT_PUBLIC_* vars are inlined into client bundles at
+# build time. Server-side secrets (RESEND_API_KEY) are passed at
+# runtime only and never baked into the image.
+# ================================================================
+
 FROM oven/bun:1.3.14 AS base
 WORKDIR /app
 
 # ---------- deps ----------
 FROM base AS deps
-COPY package.json bun.lock* ./
+COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile --ignore-scripts
 
-# ---------- build ----------
-FROM base AS builder
+# ---------- builder ----------
+FROM node:22-bookworm-slim AS builder
+WORKDIR /app
+
+ARG NEXT_PUBLIC_CONVEX_URL
+ARG NEXT_PUBLIC_CONVEX_SITE_URL
+
+ENV NEXT_PUBLIC_CONVEX_URL=$NEXT_PUBLIC_CONVEX_URL
+ENV NEXT_PUBLIC_CONVEX_SITE_URL=$NEXT_PUBLIC_CONVEX_SITE_URL
+ENV NEXT_TELEMETRY_DISABLED=1
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-ENV NEXT_TELEMETRY_DISABLED=1
-RUN bun run build
+RUN node_modules/.bin/next build
 
 # ---------- runner ----------
 FROM node:22-alpine AS runner
