@@ -20,9 +20,11 @@ import { cardShadow } from "@/lib/styles";
 
 /** A single pricing tier / plan. */
 interface Plan {
+  id: string;
   tier: string;
   name: string;
   price: string;
+  amount: number;
   features: string[];
   cta: string;
   gradient?: boolean;
@@ -31,9 +33,11 @@ interface Plan {
 /** First row of pricing cards. */
 const TIER_ROW_ONE: Plan[] = [
   {
+    id: "starter",
     tier: "STARTER",
     name: "Portfolio Build",
     price: "₹1,000",
+    amount: 1000,
     features: [
       "Building personal portfolio",
       "Deploy & domain setup",
@@ -44,9 +48,11 @@ const TIER_ROW_ONE: Plan[] = [
     cta: "SELECT PLAN",
   },
   {
+    id: "growth",
     tier: "GROWTH",
     name: "Security & Scale",
     price: "₹950",
+    amount: 950,
     features: [
       "Advanced security protocols",
       "Payment gateway integration",
@@ -57,9 +63,11 @@ const TIER_ROW_ONE: Plan[] = [
     cta: "SELECT PLAN",
   },
   {
+    id: "professional",
     tier: "PROFESSIONAL",
     name: "SaaS Foundation",
     price: "₹2,500",
+    amount: 2500,
     features: [
       "Full SaaS application build",
       "AI smart feature integration",
@@ -75,9 +83,11 @@ const TIER_ROW_ONE: Plan[] = [
 /** Second row of pricing cards. */
 const TIER_ROW_TWO: Plan[] = [
   {
+    id: "advanced",
     tier: "ADVANCED",
     name: "Agentic AI",
     price: "₹5,000",
+    amount: 5000,
     features: [
       "Agentic AI software build",
       "RAG software pipelines",
@@ -88,9 +98,11 @@ const TIER_ROW_TWO: Plan[] = [
     cta: "SELECT PLAN",
   },
   {
+    id: "enterprise",
     tier: "ENTERPRISE",
     name: "Data Management",
     price: "₹8,000",
+    amount: 8000,
     features: [
       "Data entry software",
       "Custom admin dashboards",
@@ -101,9 +113,11 @@ const TIER_ROW_TWO: Plan[] = [
     cta: "SELECT PLAN",
   },
   {
+    id: "ultimate",
     tier: "ULTIMATE",
     name: "Mobile Ecosystem",
     price: "₹10,000",
+    amount: 10000,
     features: [
       "Native mobile app build",
       "Playstore deployment",
@@ -114,9 +128,11 @@ const TIER_ROW_TWO: Plan[] = [
     cta: "SELECT PLAN",
   },
   {
+    id: "essential",
     tier: "ESSENTIAL",
     name: "Web Application",
     price: "₹600",
+    amount: 600,
     features: [
       "Build web application (personal site, blog site)",
       "Setup database",
@@ -137,8 +153,7 @@ const TERMINAL_LINES = [
 
 /**
  * PricingCard – single pricing card.
- * Every card uses the same pink/lavender gradient CTA button so ALL the
- * plan buttons share the same colour treatment (matching SaaS Foundation).
+ * Displays the plan details without a CTA button in the Service Tiers section.
  */
 function PricingCard({ plan }: { plan: Plan }) {
   return (
@@ -167,9 +182,6 @@ function PricingCard({ plan }: { plan: Plan }) {
         <p className="text-[34px] font-bold tracking-[-0.02em] text-foreground">
           {plan.price}
         </p>
-        <button className="cta-gradient mt-4 w-full rounded-md py-3 text-[11px] font-bold uppercase tracking-wider text-[#0f0f11] shadow-[0_4px_20px_rgba(244,166,193,0.2)] transition-all hover:brightness-110">
-          {plan.cta}
-        </button>
       </div>
     </div>
   );
@@ -262,7 +274,7 @@ export default function ServicesPage() {
             </h2>
           </div>
           <a
-            href="/blog"
+            href="/contact"
             className="text-[11px] uppercase tracking-wider text-[#f4a6c1] transition-transform hover:translate-x-0.5"
           >
             View All Articles &gt;

@@ -3,8 +3,9 @@
  * ------------------------------------------------------------------
  * Root context providers that the whole app depends on.
  *
- * - SessionProvider      : NextAuth session state for useSession().
- * - QueryClientProvider  : TanStack Query for server-like data fetching.
+ * - ConvexProvider         : Convex client for database access
+ *                           (contact submissions, blog data).
+ * - QueryClientProvider    : TanStack Query for server-like data fetching.
  *
  * Nesting order matters: the QueryClient is created once per mount and
  * shared by every page that queries blog data.
@@ -12,12 +13,13 @@
  */
 "use client";
 
-import { SessionProvider } from "next-auth/react";
+import { ConvexProvider } from "convex/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, type ReactNode } from "react";
+import { convex } from "@/lib/convex-client";
 
 export function Providers({ children }: { children: ReactNode }) {
-  // useRef-like state: the QueryClient is created only once.
+  // The QueryClient is created only once.
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -31,8 +33,8 @@ export function Providers({ children }: { children: ReactNode }) {
   );
 
   return (
-    <SessionProvider>
+    <ConvexProvider client={convex}>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </SessionProvider>
+    </ConvexProvider>
   );
 }

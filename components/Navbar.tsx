@@ -3,11 +3,8 @@
  * ------------------------------------------------------------------
  * Fixed top navigation shared by every page.
  *
- * Contains: logo, desktop links, auth actions (or session info),
- * a theme toggle, and a responsive mobile menu.
- *
- * Small sub-components (ThemeToggle, BorderedAuthButton) exist so the
- * same button is not duplicated between desktop/mobile markup.
+ * Contains: logo, desktop links, a theme toggle, and a responsive
+ * mobile menu.
  * ------------------------------------------------------------------
  */
 "use client";
@@ -15,19 +12,16 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession, signIn, signOut } from "next-auth/react";
 import { Menu, X, ChevronRight, Sun, Moon } from "lucide-react";
 import { gsap } from "@/lib/animations";
 import { useTheme } from "@/components/theme-provider";
-import { useAuthStore } from "@/lib/stores/auth-store";
 
 /** All top-level routes shown in the navigation. */
 const NAV_LINKS = [
   { label: "HOME", href: "/" },
   { label: "ABOUT", href: "/about" },
   { label: "SERVICES", href: "/services" },
-  { label: "BILLING", href: "/billing" },
-  { label: "BLOG", href: "/blog" },
+  { label: "CONTACT", href: "/contact" },
 ];
 
 /** Sun/Moon button that flips the active theme. */
@@ -45,46 +39,11 @@ function ThemeToggle() {
   );
 }
 
-/**
- * Bordered, uppercase auth button (Login / Sign out).
- * `mobile` just makes it stretch full-width for the mobile menu.
- */
-function BorderedAuthButton({
-  onClick,
-  children,
-  mobile = false,
-}: {
-  onClick: () => void;
-  children: React.ReactNode;
-  mobile?: boolean;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className={
-        "rounded-md border border-border-strong text-foreground transition-colors " +
-        "text-[12px] font-medium uppercase tracking-[0.08em] hover:bg-surface " +
-        (mobile ? "flex-1 px-4 py-2" : "px-4 py-1.5")
-      }
-    >
-      {children}
-    </button>
-  );
-}
-
 export function Navbar() {
   const pathname = usePathname();
-  const { data: session, status } = useSession();
-  const clearAuth = useAuthStore((s) => s.clearAuth);
   const [mobileOpen, setMobileOpen] = useState(false);
   // Track the previous path so we can react to route changes below.
   const [previousPath, setPreviousPath] = useState(pathname);
-
-  /** Sign out of NextAuth and clear the local role store. */
-  const handleSignOut = () => {
-    clearAuth();
-    signOut();
-  };
 
   // Close the mobile menu whenever the route changes.
   // (Adjusting state during render is React's recommended replacement
@@ -107,14 +66,12 @@ export function Navbar() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-  // Whether the user is signed in.
-  const authenticated = status === "authenticated";
-
   return (
-    <header
-      id="bytecraft-nav"
-      className="fixed top-0 left-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-[12px]"
-    >
+    <>
+      <header
+        id="bytecraft-nav"
+        className="fixed top-0 left-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-[12px]"
+      >
       <nav className="mx-auto flex h-16 w-full max-w-[1280px] items-center justify-between px-6">
         {/* Logo */}
         <Link href="/" className="text-xl font-bold tracking-tight">
@@ -145,26 +102,6 @@ export function Navbar() {
         {/* Desktop actions */}
         <div className="hidden items-center gap-3 md:flex">
           <ThemeToggle />
-          {authenticated ? (
-            <>
-              <span className="text-sm text-muted-foreground">
-                {session?.user?.name}
-              </span>
-              <BorderedAuthButton onClick={handleSignOut}>
-                Sign out
-              </BorderedAuthButton>
-            </>
-          ) : (
-            <>
-              <BorderedAuthButton onClick={() => signIn()}>Login</BorderedAuthButton>
-              <Link
-                href="/signup"
-                className="rounded-md cta-gradient px-4 py-1.5 text-[12px] font-semibold uppercase tracking-[0.08em] text-[#0f0f11] transition-all hover:brightness-110"
-              >
-                Signup
-              </Link>
-            </>
-          )}
         </div>
 
         {/* Mobile hamburger */}
@@ -202,30 +139,10 @@ export function Navbar() {
                 <ChevronRight size={16} className="text-faint" />
               </Link>
             ))}
-
-            {/* Auth actions */}
-            <div className="mt-2 flex gap-3 border-t border-border pt-5">
-              {authenticated ? (
-                <BorderedAuthButton mobile onClick={handleSignOut}>
-                  Sign out
-                </BorderedAuthButton>
-              ) : (
-                <>
-                  <BorderedAuthButton mobile onClick={() => signIn()}>
-                    Login
-                  </BorderedAuthButton>
-                  <Link
-                    href="/signup"
-                    className="flex-1 rounded-md cta-gradient px-4 py-2 text-center text-[12px] font-semibold uppercase tracking-[0.08em] text-[#0f0f11]"
-                  >
-                    Signup
-                  </Link>
-                </>
-              )}
-            </div>
           </div>
         </div>
       )}
-    </header>
+      </header>
+    </>
   );
 }

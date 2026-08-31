@@ -31,18 +31,6 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    id: 1,
-    slug: "architecting-hyper-scale",
-    title: "Architecting for Hyper-Scale: Lessons from the Edge",
-    excerpt:
-      "Deep dive into the infrastructure choices, distributed systems patterns, and observability tools required to maintain 99.999% uptime during massive traffic spikes.",
-    tag: "ENGINEERING",
-    topic: "engineering",
-    date: "OCT 24, 2024",
-    image: "/assets/Blog-asserts/blog-main-image.png",
-    featured: true,
-  },
-  {
     id: 2,
     slug: "scaling-rag-systems",
     title: "Scaling RAG Systems for Enterprise SaaS",
@@ -52,6 +40,7 @@ export const blogPosts: BlogPost[] = [
     topic: "engineering",
     date: "OCT 18, 2024",
     image: "/assets/Blog-asserts/sub-blog-one.png",
+    featured: true,
   },
   {
     id: 3,
@@ -76,17 +65,6 @@ export const blogPosts: BlogPost[] = [
     image: "/assets/Blog-asserts/sub-blog-three.png",
   },
   {
-    id: 5,
-    slug: "bytecraft-v24-release",
-    title: "ByteCraft v2.4 Release Notes",
-    excerpt:
-      "Introducing the new GraphQL API, enhanced Webhook delivery guarantees...",
-    tag: "UPDATES",
-    topic: "updates",
-    date: "OCT 05, 2024",
-    image: "/assets/Blog-asserts/sub-blog-one.png",
-  },
-  {
     id: 6,
     slug: "optimizing-ai-pipelines",
     title: "Optimizing AI Pipelines for Freelance Scale",
@@ -96,36 +74,6 @@ export const blogPosts: BlogPost[] = [
     topic: "engineering",
     date: "OCT 12, 2024",
     image: "/assets/Blog-asserts/blog-main-image.png",
-  },
-  {
-    id: 7,
-    slug: "bytecraft-v20-release",
-    title: "ByteCraft v2.0 Release Notes",
-    excerpt: "Major architectural changes and new API endpoints.",
-    tag: "UPDATE",
-    topic: "updates",
-    date: "OCT 12, 2024",
-    image: "/assets/Blog-asserts/sub-blog-two.png",
-  },
-  {
-    id: 8,
-    slug: "zero-trust-workflows",
-    title: "Zero-Trust Workflows",
-    excerpt: "How to implement robust zero-trust models using Auth0 and edge...",
-    tag: "SECURITY",
-    topic: "security",
-    date: "OCT 08, 2024",
-    image: "/assets/Blog-asserts/sub-blog-three.png",
-  },
-  {
-    id: 9,
-    slug: "freelance-dev-ethos",
-    title: "The Freelance Dev Ethos",
-    excerpt: "What drives independent engineers in the modern web era.",
-    tag: "CULTURE",
-    topic: "culture",
-    date: "SEP 29, 2024",
-    image: "/assets/Blog-asserts/sub-blog-one.png",
   },
 ];
 
