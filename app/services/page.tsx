@@ -66,8 +66,8 @@ const TIER_ROW_ONE: Plan[] = [
     id: "professional",
     tier: "PROFESSIONAL",
     name: "SaaS Foundation",
-    price: "₹2,500",
-    amount: 2500,
+    price: "₹5,500",
+    amount: 5500,
     features: [
       "Full SaaS application build",
       "AI smart feature integration",
@@ -86,8 +86,8 @@ const TIER_ROW_TWO: Plan[] = [
     id: "advanced",
     tier: "ADVANCED",
     name: "Agentic AI",
-    price: "₹5,000",
-    amount: 5000,
+    price: "₹8,000",
+    amount: 8000,
     features: [
       "Agentic AI software build",
       "RAG software pipelines",
@@ -101,8 +101,8 @@ const TIER_ROW_TWO: Plan[] = [
     id: "enterprise",
     tier: "ENTERPRISE",
     name: "Data Management",
-    price: "₹8,000",
-    amount: 8000,
+    price: "₹10,000",
+    amount: 10000,
     features: [
       "Data entry software",
       "Custom admin dashboards",
@@ -116,8 +116,8 @@ const TIER_ROW_TWO: Plan[] = [
     id: "ultimate",
     tier: "ULTIMATE",
     name: "Mobile Ecosystem",
-    price: "₹10,000",
-    amount: 10000,
+    price: "₹15,000",
+    amount: 15000,
     features: [
       "Native mobile app build",
       "Playstore deployment",

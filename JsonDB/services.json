@@ -42,7 +42,7 @@
       {
         "tier": "PROFESSIONAL",
         "name": "SaaS Foundation",
-        "price": "₹2,500",
+        "price": "₹5,500",
         "features": [
           "Full SaaS application build",
           "AI smart feature integration",
@@ -57,7 +57,7 @@
       {
         "tier": "ADVANCED",
         "name": "Agentic AI",
-        "price": "₹5,000",
+        "price": "₹8,000",
         "features": [
           "Agentic AI software build",
           "RAG software pipelines",
@@ -69,8 +69,8 @@
       },
       {
         "tier": "ENTERPRISE",
-        "name": "Data Management",
-        "price": "₹8,000",
+        "name": "Data Management & Analytics",
+        "price": "₹10,000",
         "features": [
           "Data entry software",
           "Custom admin dashboards",
@@ -83,7 +83,7 @@
       {
         "tier": "ULTIMATE",
         "name": "Mobile Ecosystem",
-        "price": "₹10,000",
+        "price": "₹15,000",
         "features": [
           "Native mobile app build",
           "Playstore deployment",
