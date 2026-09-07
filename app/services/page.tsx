@@ -36,8 +36,8 @@ const TIER_ROW_ONE: Plan[] = [
     id: "starter",
     tier: "STARTER",
     name: "Portfolio Build",
-    price: "₹1,000",
-    amount: 1000,
+    price: "₹1,000 - ₹4,000",
+    amount: 4000,
     features: [
       "Building personal portfolio",
       "Deploy & domain setup",
@@ -179,7 +179,7 @@ function PricingCard({ plan }: { plan: Plan }) {
         </ul>
       </div>
       <div className="mt-6 border-t border-border pt-6">
-        <p className="text-[34px] font-bold tracking-[-0.02em] text-foreground">
+        <p className="text-[24px] font-bold tracking-[-0.02em] text-foreground">
           {plan.price}
         </p>
       </div>

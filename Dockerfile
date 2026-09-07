@@ -16,7 +16,9 @@ COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile --ignore-scripts
 
 # ---------- builder ----------
-FROM base AS builder
+# Uses node:22-alpine + npx next build to avoid the bun-on-alpine
+# segfault-on-exit (exit 132) when running `next build` inside Docker.
+FROM node:22-alpine AS builder
 
 ARG NEXT_PUBLIC_CONVEX_URL
 ARG NEXT_PUBLIC_CONVEX_SITE_URL
@@ -27,7 +29,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN bun run build
+RUN npx next build
 
 # ---------- runner ----------
 FROM node:22-alpine AS runner
