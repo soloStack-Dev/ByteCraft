@@ -36,7 +36,7 @@ const TIER_ROW_ONE: Plan[] = [
     id: "starter",
     tier: "STARTER",
     name: "Portfolio Build",
-    price: "₹1,000 - ₹4,000",
+    price: "₹4,000",
     amount: 4000,
     features: [
       "Building personal portfolio",
