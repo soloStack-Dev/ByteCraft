@@ -6,7 +6,7 @@ const SITE_URL =
 export const metadata: Metadata = {
   title: "Contact ByteCraft — Get In Touch",
   description:
-    "Get in touch with ByteCraft about your project. Share your requirements and our team of AI and full-stack developers will reply with a plan for your SaaS or web application.",
+    "Share your project with ByteCraft and get a fixed price from our AI and full-stack developers for your SaaS, web, or mobile build.",
   keywords: [
     "contact ByteCraft",
     "hire freelance developers",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "ByteCraft",
     title: "Contact ByteCraft — Get In Touch",
     description:
-      "Share your project details with ByteCraft and get a reply from our AI and full-stack development team.",
+      "Share your project with ByteCraft and get a fixed price from our AI and full-stack developers for your SaaS, web, or mobile build.",
     images: [
       {
         url: "/assets/Blog-asserts/blog-main-image.png",

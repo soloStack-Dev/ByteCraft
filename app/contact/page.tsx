@@ -20,7 +20,7 @@ import Image from "next/image";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { ChevronLeft, ChevronRight, AtSign } from "lucide-react";
+import { ChevronLeft, ChevronRight, AtSign, Check } from "lucide-react";
 import { useScrollReveal, useEntrance } from "@/lib/animations";
 import { useBlogPosts, useFeaturedPost } from "@/lib/hooks/use-blog";
 import { useBlogStore, type BlogTopic } from "@/lib/stores/blog-store";
@@ -198,6 +198,27 @@ function ContactForm() {
               </p>
             ))}
           </div>
+          <div className="mt-6">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-faint">
+              Typical projects
+            </p>
+            <ul className="mt-3 max-w-[440px] flex flex-col gap-2">
+              {[
+                "Portfolio and personal brand sites",
+                "AI SaaS builds and AI-powered features",
+                "Stripe and payment gateway integration",
+                "Load balancing and zero-trust security",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-2 text-[13px] leading-[1.5] text-muted-foreground"
+                >
+                  <Check size={13} className="mt-0.5 shrink-0 text-[#f4a6c1]" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="flex flex-col gap-4">
@@ -358,7 +379,10 @@ export default function ContactPage() {
         <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f4a6c1]">
           Talk To ByteCraft
         </p>
-        <div className="mt-2 flex flex-col gap-3">
+        <h1 className="mt-3 max-w-[760px] text-[34px] font-bold leading-[1.15] tracking-[-0.02em] text-foreground sm:text-[44px]">
+          Contact ByteCraft — Get In Touch
+        </h1>
+        <div className="mt-6 flex flex-col gap-3">
           <p className="max-w-[720px] text-[15px] leading-[1.7] text-muted-foreground">
             This page is where ByteCraft and its readers meet. Browse the latest
             engineering insights below, filter by topic, or send a message about
@@ -371,6 +395,13 @@ export default function ContactPage() {
             reply within two working days. Whichever way you write to us,
             include a sentence about your goal and your rough timeline so we can
             respond with something useful straight away.
+          </p>
+          <p className="max-w-[720px] text-[15px] leading-[1.7] text-muted-foreground">
+            We take on a limited number of builds each month so every project
+            gets real attention: new products, migrations, AI features, and
+            performance rescue work. If the scope is bigger than a single
+            message, we will ask for a short call and confirm the details before
+            anything is billed.
           </p>
         </div>
       </section>
@@ -395,9 +426,9 @@ export default function ContactPage() {
                   {featured.date}
                 </span>
               </div>
-              <h1 className="mt-4 text-[34px] font-bold leading-[1.2] tracking-[-0.02em] text-foreground sm:text-[36px]">
+              <h2 className="mt-4 text-[34px] font-bold leading-[1.2] tracking-[-0.02em] text-foreground sm:text-[36px]">
                 {featured.title}
-              </h1>
+              </h2>
               <p className="mt-4 max-w-[480px] text-[15px] leading-[1.6] text-muted-foreground">
                 {featured.excerpt}
               </p>

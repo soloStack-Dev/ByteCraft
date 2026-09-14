@@ -35,7 +35,7 @@ export const blogPosts: BlogPost[] = [
     slug: "scaling-rag-systems",
     title: "Scaling RAG Systems for Enterprise SaaS",
     excerpt:
-      "Scaling RAG systems for enterprise SaaS takes resilient Retrieval-Augmented Generation pipelines, vector databases, and a clear evaluation strategy. This deep dive shows the exact architecture we use to keep latency low and answers accurate as workloads grow.",
+      "Scaling RAG Systems for Enterprise SaaS demands resilient Retrieval-Augmented Generation pipelines, vector databases, and a clear evaluation strategy. This deep dive shows the exact architecture we use to keep latency low and answers accurate as workloads grow.",
     tag: "ENGINEERING",
     topic: "engineering",
     date: "OCT 18, 2024",

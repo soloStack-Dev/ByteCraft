@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     template: "%s | ByteCraft",
   },
   description:
-    "ByteCraft is the AI SaaS workspace for technical freelancers — automate repetitive work, deploy securely, and scale your freelance operation with precision.",
+    "ByteCraft is the AI SaaS workspace for technical freelancers — automate, deploy securely, and scale your freelance operation with precision.",
   keywords: [
     "AI SaaS",
     "SaaS for technical freelancers",

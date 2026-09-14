@@ -6,7 +6,7 @@ const SITE_URL =
 export const metadata: Metadata = {
   title: "Services & Pricing — AI SaaS for Freelancers",
   description:
-    "Explore ByteCraft service tiers and pricing for technical freelancers: portfolio builds, AI automation, secure deployment, SaaS foundations, and agentic AI pipelines.",
+    "ByteCraft services and transparent pricing for technical freelancers — from portfolios and web apps to agentic AI and mobile ecosystems.",
   keywords: [
     "AI SaaS pricing",
     "freelancer services",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "ByteCraft",
     title: "Services & Pricing — AI SaaS for Freelancers",
     description:
-      "AI SaaS solutions and transparent pricing for technical freelancers, from portfolios and web applications to agentic AI and mobile ecosystems.",
+      "ByteCraft services and transparent pricing for technical freelancers — from portfolios and web apps to agentic AI and mobile ecosystems.",
     images: [
       {
         url: "/assets/Service-asserts/main-section-backgroud-image.png",
