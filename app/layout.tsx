@@ -31,13 +31,64 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://byte-craft-service.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "ByteCraft — AI SaaS for Technical Freelancers",
     template: "%s | ByteCraft",
   },
   description:
-    "ByteCraft provides AI-driven SaaS tools designed exclusively for technical freelancers. Automate the mundane, secure your deployments, and scale your operations with precision.",
+    "ByteCraft is the AI SaaS workspace for technical freelancers — automate repetitive work, deploy securely, and scale your freelance operation with precision.",
+  keywords: [
+    "AI SaaS",
+    "SaaS for technical freelancers",
+    "freelance software tools",
+    "AI automation",
+    "secure deployment",
+    "freelance SaaS platform",
+    "ByteCraft",
+  ],
+  authors: [{ name: "ByteCraft" }],
+  creator: "ByteCraft",
+  publisher: "ByteCraft",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: SITE_URL,
+    siteName: "ByteCraft",
+    title: "ByteCraft — AI SaaS for Technical Freelancers",
+    description:
+      "One workspace for your entire freelance operation. ByteCraft automates the mundane, secures your deployments, and scales your engineering practice with precision.",
+    images: [
+      {
+        url: "/assets/About-asserts/main-section-backgroud-image.png",
+        alt: "ByteCraft AI SaaS platform for technical freelancers",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ByteCraft — AI SaaS for Technical Freelancers",
+    description:
+      "AI SaaS tools built for technical freelancers. Automate the mundane, secure every deployment, and scale with precision.",
+    images: ["/assets/About-asserts/main-section-backgroud-image.png"],
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

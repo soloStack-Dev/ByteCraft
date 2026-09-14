@@ -11,7 +11,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Clock, Cpu, Shield, Code2 } from "lucide-react";
+import { ArrowRight, Check, Clock, Cpu, Shield, Code2 } from "lucide-react";
 import { useScrollReveal, useEntrance } from "@/lib/animations";
 import { cardShadow } from "@/lib/styles";
 import { LatestTransmissions } from "@/components/LatestTransmissions";
@@ -86,7 +86,7 @@ export default function HomePage() {
         <div className="absolute inset-0">
           <Image
             src="/assets/About-asserts/main-section-backgroud-image.png"
-            alt=""
+            alt="Futuristic geometric background pattern for the ByteCraft hero section"
             fill
             priority
             sizes="100vw"
@@ -142,6 +142,66 @@ export default function HomePage() {
               <Code2 size={16} />
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* WHY BYTECRAFT */}
+      <section className="mx-auto w-full max-w-[1280px] px-6 py-20">
+        <SectionHeader
+          title={homeData.intro.title}
+          subtitle={homeData.intro.eyebrow}
+        />
+        <div className="gap-10 space-y-6">
+          {homeData.intro.paragraphs.map((paragraph) => (
+            <p
+              key={paragraph.slice(0, 24)}
+              data-reveal
+              className="max-w-[760px] text-[15px] leading-[1.7] text-muted-foreground"
+            >
+              {renderBold(paragraph)}
+            </p>
+          ))}
+          <ul className="max-w-[760px] flex flex-col gap-3 pt-2">
+            {homeData.intro.benefits.map((benefit) => (
+              <li
+                key={benefit}
+                data-reveal
+                className="flex items-start gap-2 text-[15px] text-foreground"
+              >
+                <Check size={16} className="mt-0.5 shrink-0 text-[#f4a6c1]" />
+                {benefit}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="mx-auto w-full max-w-[1280px] px-6 py-20">
+        <SectionHeader
+          title={homeData.how.title}
+          subtitle={homeData.how.description}
+        />
+        <div className="grid gap-6 md:grid-cols-3">
+          {homeData.how.steps.map((step, i) => (
+            <div
+              key={step.title}
+              data-reveal
+              data-reveal-delay={String(0.1 * i)}
+              className="rounded-xl border border-border bg-card p-8"
+              style={{ boxShadow: cardShadow }}
+            >
+              <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#f4a6c1]">
+                Step {i + 1}
+              </p>
+              <h3 className="mt-3 text-lg font-semibold tracking-tight text-foreground">
+                {step.title}
+              </h3>
+              <p className="mt-2 text-sm leading-[1.6] text-muted-foreground">
+                {step.description}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 

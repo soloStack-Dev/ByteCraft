@@ -172,10 +172,32 @@ function ContactForm() {
           <h2 className="mt-2 text-[28px] font-bold tracking-[-0.01em] text-foreground">
             Contact information
           </h2>
-          <p className="mt-3 max-w-[420px] text-[14px] leading-[1.6] text-muted-foreground">
+          <p className="mt-3 max-w-[440px] text-[14px] leading-[1.6] text-muted-foreground">
             Tell us about your project — share your details and we&apos;ll
-            reply as soon as possible.
+            reply as soon as possible. Whether you need a portfolio, a SaaS
+            build, or AI automation, the ByteCraft team reads every message
+            personally.
           </p>
+          <div className="mt-6 flex flex-col gap-3">
+            {[1, 2, 3].map((step) => (
+              <p
+                key={step}
+                className="max-w-[440px] text-[13px] leading-[1.6] text-muted-foreground"
+              >
+                <span className="font-semibold text-foreground">
+                  {step === 1 && "1. Share your brief. "}
+                  {step === 2 && "2. Get a plan & quote. "}
+                  {step === 3 && "3. We build, secure, and launch. "}
+                </span>
+                {step === 1 &&
+                  "Send a few lines about your goals, timeline, and budget. No jargon required — plain language is perfect."}
+                {step === 2 &&
+                  "Within two working days you receive a fixed scope, a fixed price from our services page, and a delivery date."}
+                {step === 3 &&
+                  "Our developers build the product, run security and SEO checks, and deploy it to your domain with support included."}
+              </p>
+            ))}
+          </div>
         </div>
 
         <div className="flex flex-col gap-4">
@@ -284,6 +306,9 @@ function FeedbackSection() {
           </h2>
           <p className="mt-3 max-w-[420px] text-[14px] leading-[1.6] text-muted-foreground">
             Tell us how we&apos;re doing — your feedback helps us improve.
+            Found a bug in a core feature or a typo in the docs? We read every
+            note and ship fixes quickly, and admissions like that are exactly
+            the kind of feedback that shapes the roadmap.
           </p>
 
           <textarea
@@ -328,6 +353,28 @@ export default function ContactPage() {
 
   return (
     <div ref={revealRef}>
+      {/* PAGE INTRO */}
+      <section className="mx-auto w-full max-w-[1280px] px-6 pt-16">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f4a6c1]">
+          Talk To ByteCraft
+        </p>
+        <div className="mt-2 flex flex-col gap-3">
+          <p className="max-w-[720px] text-[15px] leading-[1.7] text-muted-foreground">
+            This page is where ByteCraft and its readers meet. Browse the latest
+            engineering insights below, filter by topic, or send a message about
+            your own project — a portfolio, a web application, an AI SaaS build,
+            or a full mobile ecosystem. Every inquiry lands directly with the
+            development team, not a sales funnel.
+          </p>
+          <p className="max-w-[720px] text-[15px] leading-[1.7] text-muted-foreground">
+            Prefer email? Reach us any time at hello@bytecraft.dev and we will
+            reply within two working days. Whichever way you write to us,
+            include a sentence about your goal and your rough timeline so we can
+            respond with something useful straight away.
+          </p>
+        </div>
+      </section>
+
       {/* FEATURED ARTICLE */}
       <section
         ref={entranceRef}
@@ -469,6 +516,41 @@ export default function ContactPage() {
           >
             <ChevronRight size={16} />
           </button>
+        </div>
+      </section>
+
+      {/* COMMON QUESTIONS */}
+      <section className="mx-auto w-full max-w-[1280px] px-6 py-12">
+        <div className="rounded-xl border border-border bg-elevated p-8 md:p-10">
+          <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-[#f4a6c1]">
+            Before You Ask
+          </p>
+          <h2 className="mt-2 text-[28px] font-bold tracking-[-0.01em] text-foreground">
+            Common Questions
+          </h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {[
+              {
+                q: "How quickly will I hear back?",
+                a: "Messages are answered within two working days. Urgent launch requests should mention a deadline so we can prioritise you.",
+              },
+              {
+                q: "Do you work with non-technical founders?",
+                a: "Yes. ByteCraft exists for people moving into technical careers from any background, so we handle the engineering details for you.",
+              },
+              {
+                q: "What happens after my product launches?",
+                a: "Every build ships with deployment support, monitoring, and clear documentation, plus optional maintenance if you want us to keep iterating.",
+              },
+            ].map((item) => (
+              <div key={item.q} className="rounded-lg border border-border-strong bg-background p-6">
+                <h3 className="text-[15px] font-semibold text-foreground">{item.q}</h3>
+                <p className="mt-2 text-[13px] leading-[1.6] text-muted-foreground">
+                  {item.a}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

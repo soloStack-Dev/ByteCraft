@@ -1,19 +1,71 @@
 {
   "mission": {
-    "text": "We build the infrastructure that powers the next generation of SaaS. High-fidelity, developer-centric, and fiercely independent."
+    "eyebrow": "Our Mission",
+    "title": "Democratizing the tooling of elite engineering teams",
+    "text": "We build the infrastructure that powers the next generation of AI SaaS products. High-fidelity, developer-centric, and fiercely independent. ByteCraft removes the barriers that keep capable people from launching technical careers.",
+    "tagline": "The story behind ByteCraft starts where most software careers do: with a decision to build something of your own."
   },
   "founderStory": {
-    "title": "I build this saas product for starting own freelancing journey because AI can do all repetitive task so don't abandoned our interested career so I planning to move my career this career way but I am currently work in non developer field",
+    "title": "Built for Technical Freelancers",
+    "intro": "ByteCraft began with a simple observation — modern AI can automate nearly every repetitive task. The founder built this SaaS product to start his own freelancing journey, and this platform is the story of how it became a launch pad for technical freelancers everywhere.",
     "paragraphs": [
-      "The genesis of this tool was born from necessity, bridging the gap between ambition and current reality.",
-      "By automating the mundane, we free up cognitive load for complex, creative problem-solving.",
-      "This platform serves as the foundational scaffolding for transitioning into technical domains.",
-      "It's designed for resilience, allowing you to architect solutions regardless of your background.",
-      "We are democratizing the tooling previously reserved for elite engineering teams."
+      "I built this SaaS product to start my own freelancing journey. Because AI can handle all the repetitive tasks, nobody should have to abandon the career they are genuinely interested in — including people who have never written production code.",
+      "I have spent my career working outside the developer world, which is exactly why this platform exists. ByteCraft bridges the gap between ambition and current reality by giving non-developers the same scaffolding that senior engineering teams take for granted.",
+      "By automating the mundane, we free up cognitive load for complex, creative problem-solving. This platform serves as the foundational scaffolding for transitioning into technical domains without restarting your life.",
+      "It is designed for resilience, allowing you to architect solutions regardless of your background. We are democratizing the tooling previously reserved for elite engineering teams so that every technical freelancer can compete on talent, not infrastructure.",
+      "Every module is a building block. Track your estimates, automate your busywork, and deploy securely — then stack the next capability as your independent practice grows."
     ],
     "ctaText": "Preview Platform",
     "ctaHref": "/services",
-    "image": "/assets/About-asserts/about-section-image.png"
+    "author": "Faleel H",
+    "role": "AI + Full Stack Developer",
+    "image": "/assets/About-asserts/about-section-image.png",
+    "imageAlt": "Founder and developer behind ByteCraft"
+  },
+  "values": {
+    "eyebrow": "What We Stand For",
+    "title": "Engineered around your independence",
+    "description": "Four principles guide everything we ship. They are deliberately human: software should make you more able, never more dependent.",
+    "items": [
+      {
+        "title": "Resilience",
+        "description": "Architecture that survives growth, changing requirements, and shifting markets without a full rebuild."
+      },
+      {
+        "title": "Clarity",
+        "description": "Tooling and documentation designed for people who came from any background, not just CS graduates."
+      },
+      {
+        "title": "Autonomy",
+        "description": "You own your deployments, your data, and your career decisions. ByteCraft works for you, not the other way around."
+      },
+      {
+        "title": "Craft",
+        "description": "Precision in every detail, from the API surface to the final pixel, because quality is the fastest trust-builder in freelancing."
+      }
+    ]
+  },
+  "journey": {
+    "eyebrow": "The Journey",
+    "title": "From a side project to a freelancer's launch pad",
+    "intro": "ByteCraft was never planned as a company. It grew the way most useful tools do — one real problem at a time.",
+    "milestones": [
+      {
+        "phase": "2024",
+        "title": "The realization",
+        "text": "Spending evenings learning to build while holding a non-developer job made it obvious: the hard part was not code, it was tooling and process."
+      },
+      {
+        "phase": "2025",
+        "title": "The first build",
+        "text": "The first ByteCraft prototype automated the repetitive parts of freelance delivery — estimates, boilerplate, and deployment checks."
+      },
+      {
+        "phase": "2026",
+        "title": "The platform",
+        "text": "Today ByteCraft is a full AI SaaS workspace, but it still exists for the same reason: to help any technical freelancer launch and scale their own practice."
+      }
+    ]
   },
   "dispatches": {
     "title": "Latest Dispatches",

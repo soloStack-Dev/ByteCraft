@@ -3,7 +3,7 @@
     "badge": "Version 2.0 is live",
     "titleLineOne": "One Workspace",
     "titleLineTwo": "Endless Possibilities",
-    "description": "**ByteCraft provides AI-driven SaaS tools that empower developers and technical teams to build, automate, and scale AI-powered web applications. Automate the mundane, secure your deployments, and scale your operations with precision.**",
+    "description": "**One workspace** for your entire freelance operation, **endless possibilities** for growth. ByteCraft provides AI-driven SaaS tools that empower developers and technical teams to build, automate, and scale AI-powered web applications. Automate the mundane, secure your deployments, and scale your operations with precision.",
     "primaryCta": "Our Services",
     "primaryCtaHref": "/services",
     "secondaryCta": "View Documentation",
@@ -37,6 +37,41 @@
         "description": "End-to-end encrypted pipelines ensuring your freelance projects are deployed securely with zero-trust architecture built-in.",
         "linkText": "Explore Module",
         "linkHref": "/services"
+      }
+    ]
+  },
+  "intro": {
+    "eyebrow": "Why ByteCraft",
+    "title": "Purpose-built for technical freelancers",
+    "paragraphs": [
+      "ByteCraft is the AI SaaS workspace that lets technical freelancers run their entire operation from a single dashboard. Instead of stitching together a dozen disconnected tools for task tracking, code automation, and deployment, you get one workspace where every stage of a freelance project lives in a single loop.",
+      "Every ByteCraft module maps to a real freelance workflow. Estimate accurately, offload repetitive coding to AI automation, and ship through secure pipelines without trusting third-party infrastructure. For solo developers and small teams that means the guardrails of a mature engineering organization without the overhead.",
+      "We built this AI SaaS platform because most products ignore how freelancers actually work. Whether you are a full-stack contractor, an agency owner, or a developer transitioning from a non-technical career, ByteCraft removes busywork and unlocks the endless possibilities of growing a sustainable, independent practice.",
+      "The result is simple: better estimates, faster delivery, and deployments your clients can rely on. Stop renting fifteen different tools, stop babysitting pipelines by hand, and start treating your freelance business like the serious engineering operation it deserves to be."
+    ],
+    "benefits": [
+      "One subscription replaces task boards, bots, and CI tooling.",
+      "AI automation strips hours out of every sprint.",
+      "Zero-trust pipelines ship with monitoring and rollbacks.",
+      "Transparent pricing with no surprise infrastructure bills."
+    ]
+  },
+  "how": {
+    "eyebrow": "How It Works",
+    "title": "From brief to secure deployment",
+    "description": "Three repeatable steps turn any freelance brief into a deployed, production-ready product.",
+    "steps": [
+      {
+        "title": "Plan",
+        "description": "Capture requirements, estimate effort, and schedule work across sprints with predictable delivery forecasts that keep stakeholders aligned."
+      },
+      {
+        "title": "Automate",
+        "description": "Let AI generate boilerplate, review code, and handle repetitive tasks so you can focus on the problems that need human judgement."
+      },
+      {
+        "title": "Deploy",
+        "description": "Ship through encrypted, zero-trust pipelines with monitoring, instant rollbacks, and horizontal scaling built in from day one."
       }
     ]
   },

@@ -23,6 +23,7 @@ interface Plan {
   id: string;
   tier: string;
   name: string;
+  description: string;
   price: string;
   amount: number;
   features: string[];
@@ -36,6 +37,8 @@ const TIER_ROW_ONE: Plan[] = [
     id: "starter",
     tier: "STARTER",
     name: "Portfolio Build",
+    description:
+      "A professional portfolio that turns visitors into paying clients, with clean code, fast hosting, and a domain you own.",
     price: "₹4,000",
     amount: 4000,
     features: [
@@ -51,6 +54,8 @@ const TIER_ROW_ONE: Plan[] = [
     id: "growth",
     tier: "GROWTH",
     name: "Security & Scale",
+    description:
+      "Harden an existing product with security protocols, technical SEO, and payment readiness so it can grow without breaking.",
     price: "₹950",
     amount: 950,
     features: [
@@ -66,6 +71,8 @@ const TIER_ROW_ONE: Plan[] = [
     id: "professional",
     tier: "PROFESSIONAL",
     name: "SaaS Foundation",
+    description:
+      "A complete AI SaaS application foundation, from database to authentication, ready for real users and real revenue.",
     price: "₹5,500",
     amount: 5500,
     features: [
@@ -86,6 +93,8 @@ const TIER_ROW_TWO: Plan[] = [
     id: "advanced",
     tier: "ADVANCED",
     name: "Agentic AI",
+    description:
+      "Autonomous AI agents wired into your product with retrieval pipelines and a vector layer your competitors do not have.",
     price: "₹8,000",
     amount: 8000,
     features: [
@@ -101,6 +110,8 @@ const TIER_ROW_TWO: Plan[] = [
     id: "enterprise",
     tier: "ENTERPRISE",
     name: "Data Management",
+    description:
+      "Custom admin dashboards and data pipelines that turn messy operations into a real-time command center.",
     price: "₹10,000",
     amount: 10000,
     features: [
@@ -116,6 +127,8 @@ const TIER_ROW_TWO: Plan[] = [
     id: "ultimate",
     tier: "ULTIMATE",
     name: "Mobile Ecosystem",
+    description:
+      "Native mobile apps with embedded AI, distributed databases, and global load balancing, shipped to the app stores.",
     price: "₹15,000",
     amount: 15000,
     features: [
@@ -131,6 +144,8 @@ const TIER_ROW_TWO: Plan[] = [
     id: "essential",
     tier: "ESSENTIAL",
     name: "Web Application",
+    description:
+      "A fast, hand-built web application — personal site or blog — with a database, domain, and hosting fully set up.",
     price: "₹600",
     amount: 600,
     features: [
@@ -166,6 +181,9 @@ function PricingCard({ plan }: { plan: Plan }) {
           {plan.tier}
         </p>
         <p className="mt-2 text-[22px] font-bold text-foreground">{plan.name}</p>
+        <p className="mt-3 text-[13px] leading-[1.6] text-muted-foreground">
+          {plan.description}
+        </p>
         <ul className="mt-6 flex flex-col gap-3">
           {plan.features.map((f) => (
             <li
@@ -218,14 +236,22 @@ export default function ServicesPage() {
           className="grid gap-12 rounded-xl border border-border bg-elevated p-12 lg:grid-cols-2 lg:p-16"
         >
           {/* Left: headline + intro */}
-          <div className="max-w-[400px]">
-            <h1 className="text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-foreground sm:text-[48px]">
-              Welcome to
+          <div className="max-w-[440px]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f4a6c1]">
+              Services &amp; Pricing
+            </p>
+            <h1 className="mt-3 text-[36px] font-bold leading-[1.1] tracking-[-0.02em] text-foreground sm:text-[44px]">
+              AI SaaS Solutions &amp; Pricing for Technical Freelancers
             </h1>
-            <p className="mt-6 text-[15px] leading-[1.6] text-muted-foreground">
+            <p className="mt-6 text-[15px] leading-[1.7] text-muted-foreground">
               We build precision software solutions for the modern web. From
               simple landing pages to complex AI-driven SaaS applications, our
               focus is on performance, security, and scalability.
+            </p>
+            <p className="mt-4 text-[15px] leading-[1.7] text-muted-foreground">
+              Every plan below is a complete package with transparent pricing —
+              an AI SaaS build, secure deployment, and ongoing expert support,
+              so you can bill predictable clients and avoid surprise costs.
             </p>
           </div>
 
@@ -259,6 +285,103 @@ export default function ServicesPage() {
         <TiersGrid plans={TIER_ROW_ONE} />
         <div className="mt-6">
           <TiersGrid plans={TIER_ROW_TWO} />
+        </div>
+      </section>
+
+      {/* HOW WE WORK */}
+      <section className="mx-auto w-full max-w-[1280px] px-6 py-20">
+        <h2 data-reveal className="mb-4 text-[32px] font-bold tracking-[-0.01em] text-foreground">
+          How We Work
+        </h2>
+        <p data-reveal className="max-w-[720px] text-[15px] leading-[1.7] text-muted-foreground">
+          Every engagement follows the same four-phase line of attack — no
+          scope creep, no mystery invoices, and no deployed code we can&apos;t
+          stand behind. You know exactly what happens at every stage of the
+          build.
+        </p>
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              step: "01",
+              title: "Discovery",
+              text: "We map your goals, audience, and constraints into a clear specification with fixed deliverables and milestones.",
+            },
+            {
+              step: "02",
+              title: "Design & Build",
+              text: "We craft the experience and engineer the product with an AI SaaS architecture built to scale beyond the first release.",
+            },
+            {
+              step: "03",
+              title: "Secure & Optimize",
+              text: "Every deployment passes security review, technical SEO passes, performance testing, and load-balancing checks.",
+            },
+            {
+              step: "04",
+              title: "Launch & Support",
+              text: "We deploy to your domain, monitor the pipeline, and stay on call so your freelance operation never goes dark.",
+            },
+          ].map((phase, i) => (
+            <div
+              key={phase.step}
+              data-reveal
+              data-reveal-delay={String(0.1 * i)}
+              className="rounded-xl border border-border bg-card p-8"
+              style={{ boxShadow: cardShadow }}
+            >
+              <p className="text-[28px] font-bold tracking-[-0.02em] text-[#f4a6c1]">
+                {phase.step}
+              </p>
+              <h3 className="mt-3 text-lg font-semibold tracking-tight text-foreground">
+                {phase.title}
+              </h3>
+              <p className="mt-2 text-sm leading-[1.6] text-muted-foreground">
+                {phase.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="mx-auto w-full max-w-[1280px] px-6 py-20">
+        <h2 data-reveal className="mb-12 text-[32px] font-bold tracking-[-0.01em] text-foreground">
+          Frequently Asked Questions
+        </h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          {[
+            {
+              q: "What do I get for the listed price?",
+              a: "The price is the total for the complete package described in that tier — build, deployment, and launch support. There are no hidden hourly rates or surprise line items.",
+            },
+            {
+              q: "Can this AI SaaS scale as my freelancing grows?",
+              a: "Yes. Every tier is built on modular architecture with databases, caching, and pipelines designed to grow from a single client into a multi-project agency without a rewrite.",
+            },
+            {
+              q: "I am not a developer. Can I still use ByteCraft?",
+              a: "Absolutely. ByteCraft was built for people moving into technical careers from any background. We handle the engineering; you run the business.",
+            },
+            {
+              q: "How fast can you deliver?",
+              a: "Depending on the tier, most builds ship in one to six weeks. The exact timeline is agreed in the discovery phase before any payment is collected.",
+            },
+          ].map((item, i) => (
+            <div
+              key={item.q}
+              data-reveal
+              data-reveal-delay={String(0.05 * i)}
+              className="rounded-xl border border-border bg-card p-8"
+              style={{ boxShadow: cardShadow }}
+            >
+              <h3 className="text-base font-semibold tracking-tight text-foreground">
+                {item.q}
+              </h3>
+              <p className="mt-3 text-sm leading-[1.6] text-muted-foreground">
+                {item.a}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
